@@ -32,6 +32,16 @@ This project uses the **NSL-KDD dataset**, a widely used benchmark for intrusion
 ## Results
 The Random Forest model slightly outperformed the Decision Tree, showing better generalization performance for detecting cyber threats.
 
+## Analysis
+
+The Random Forest model achieved slightly higher accuracy compared to the Decision Tree, indicating better generalization capability for detecting cyber threats.
+
+This suggests that ensemble methods may be more effective for intrusion detection tasks.
+
+## Model Comparison
+
+![Model Comparison](model_comparison.png)
+
 ## Project Structure
 
 
@@ -42,7 +52,6 @@ Cyber_Threat_Detection_com_Machine_Learning/
 │   └── KDDTrain+.txt
 ├── main.py
 ├── README.md
-
 
 
 ## How to Run
