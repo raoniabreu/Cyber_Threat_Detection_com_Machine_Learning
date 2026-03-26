@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import confusion_matrix
 
 # Load dataset
 data = pd.read_csv("data/KDDTrain+.txt", header=None)
@@ -43,10 +44,13 @@ for name, model in models.items():
     print(f"\nModel: {name}")
     print(f"Accuracy: {accuracy:.4f}")
     print(classification_report(y_test, y_pred))
+    print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
 
 # Plot model comparison
 plt.bar(results.keys(), results.values())
 plt.title("Model Comparison")
 plt.ylabel("Accuracy")
 plt.xlabel("Model")
+plt.savefig("model_comparison.png")
 plt.show()
