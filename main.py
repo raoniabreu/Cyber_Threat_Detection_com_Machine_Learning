@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import classification_report, accuracy_score
-from sklearn.metrics import confusion_matrix
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
 
 # Load dataset
 data = pd.read_csv("data/KDDTrain+.txt", header=None)
@@ -27,8 +27,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # Define models to compare
 models = {
-    "Random Forest": RandomForestClassifier(),
-    "Decision Tree": DecisionTreeClassifier()
+    "Random Forest": RandomForestClassifier(random_state=42),
+    "Decision Tree": DecisionTreeClassifier(random_state=42),
+    "SVM": SVC()
 }
 
 results = {}
@@ -44,8 +45,14 @@ for name, model in models.items():
     print(f"\nModel: {name}")
     print(f"Accuracy: {accuracy:.4f}")
     print(classification_report(y_test, y_pred))
+    
     print("Confusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
+    print(confusion_matrix(y_test, y_pred))
+
+# Save results to file
+with open("results.txt", "w") as f:
+    for name, acc in results.items():
+        f.write(f"{name}: {acc:.4f}\n")
 
 # Plot model comparison
 plt.bar(results.keys(), results.values())
